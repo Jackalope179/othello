@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reversi</title>
+    <script defer src="/static/faw/js/all.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+  </head>
+  <body>
+    <div class="demo-wrap">
+      <img
+        class="demo-bg"
+        src="https://cf.ltkcdn.net/boardgames/images/orig/224020-2123x1412-Othello.jpg"
+        alt=""
+      />
+      <div class="demo-content">
+        <h1 class="text-5xl" style="color: #000">OTHELLO GAMES</h1>
+        <div class="row d-flex justify-content-center">
+          <div id="show">
+            <div
+              class="card text-center border border-success message-box"
+              style="width: 18rem"
+            >
+              <img
+                style="width: 90%"
+                src="https://www.firstcomicsnews.com/wp-content/uploads/2020/08/Othello-logo.png"
+                class="card-img-top msgbox"
+              />
+              <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text"></p>
+                <!-- <a href="#" class="btn btn-primary">New Game</a> -->
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                >
+                  New Game
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModalCenter"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-change" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style ="margin-left: 70px">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                  Choose difficulty
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  
+                  <div class="row align-items-center">
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="easy">
+  
+                          <i class="far fa-star"></i>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        
+                        <button type="button" id='new-game-easy' class="btn btn-primary">Easy</button>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="row">
+                   
+                          <div class="medium">
+    
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                          </div>
+
+                     
+                      </div>
+                      <div class="row">
+                        <button type="button" class="btn btn-primary" id='new-game-medium'>
+                          Medium
+                        </button>
+
+                      </div>
+  
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="row" style="margin-left:-5px;">
+                        <div class="hard" >
+  
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                        </div>
+
+                        </div>
+                        <div class="row">
+                          <button id='new-game-hard' type="button" class="btn btn-primary" style="margin-left: 20px;">Hard</button>
+ 
+                        </div>
+
+                      </div>
+                
+                    <!-- <div class="col-md-3">
+                      <div class="row" style="margin-left:-5px;">
+                        <div class="hard" >
+  
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                        </div>
+
+                        </div>
+                        <div class="row">
+                          <button id='new-game-hard' type="button" class="btn btn-primary" style="margin-left: 20px;">Hard</button>
+ 
+                        </div>
+
+                      </div> -->
+                
+  
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main></main>
+    <div id="message"></div>
+
+    <!---------------------------- TEMPLATES ---------------------------->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/template" id="/game">
+      <div id="status" class="flex flex-col justify-center item-center">
+             <p class="status-heading text-xl font-bold uppercase mb-4 p-2">Game Status</p>
+      	<div>
+                 <span class="black">Mode (black)</span> - {{black_count}}<br>
+             </div>
+      	<div>
+                 <span class="white">Mode (white)</span> - {{white_count}}<br>
+             </div>
+             <hr class="my-2">
+      	Difficulty - Easy<br>
+      	<strong>Current player - {{player}}</strong>
+      </div>
+      <div id="game">{{game}}</div>
+    </script>
+
+    <script src="static/script.js"></script>
+  </body>
+</html>
