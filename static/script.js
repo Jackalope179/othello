@@ -1,6 +1,13 @@
 EASY = 0;
 MEDIUM = 1;
 HARD = 2;
+
+CORNER = 1;
+STABILITY = 2;
+MOBILITY = 3;
+COIN_PARITY = 4;
+
+AIMODE = [];
 var log = function (x) {
     return console.log(arguments), x;
   },
@@ -66,12 +73,42 @@ $(document)
     location.hash = "/game/" + $(e.target).parent().data("id");
   })
 
+  .on("click", "#corner", function (e) {
+    e.preventDefault();
+    AIMODE.push(CORNER);
+  })
+  .on("click", "#stability", function (e) {
+    e.preventDefault();
+    AIMODE.push(STABILITY);
+  })
+  .on("click", "#mobility", function (e) {
+    e.preventDefault();
+    AIMODE.push(MOBILITY);
+  })
+  .on("click", "#coin", function (e) {
+    e.preventDefault();
+    // let corner = document.getElementById("corner").value;
+    AIMODE.push(COIN_PARITY);
+  })
   //  send post message for creating a new game
+  .on("click", "#new-game-AI", function (e) {
+    $.post(
+      "/create",
+      {
+        name: "Hoang",
+        ai: "true",
+        difficulty: `${AIMODE[0]}_${AIMODE[1]}`, //{ firstmode: AIMODE[0], secondmode: AIMODE[1] }
+        mode: "AI",
+      },
+      enterGame
+    );
+  })
+
   .on("click", "#new-game-easy", function (e) {
     e.preventDefault();
     $.post(
       "/create",
-      { name: "Hoang", ai: "true", difficulty: EASY },
+      { name: "Hoang", ai: "true", difficulty: EASY, mode: "Player" },
       enterGame
     );
   })
@@ -80,7 +117,7 @@ $(document)
     e.preventDefault();
     $.post(
       "/create",
-      { name: "Hoang", ai: "true", difficulty: MEDIUM },
+      { name: "Hoang", ai: "true", difficulty: MEDIUM, mode: "Player" },
       enterGame
     );
   })
@@ -89,7 +126,7 @@ $(document)
     e.preventDefault();
     $.post(
       "/create",
-      { name: "Hoang", ai: "true", difficulty: HARD },
+      { name: "Hoang", ai: "true", difficulty: HARD, mode: "Player" },
       enterGame
     );
   })
@@ -121,7 +158,8 @@ $(document)
 var actions = {
   game: function (data) {
     load("/game", game(data));
-    $("#exampleModalCenter").modal("hide");
+    $("#playerMode").modal("hide");
+    $("#AImode").modal("hide");
   },
   games: function (data) {
     load("/games");

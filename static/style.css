@@ -3,7 +3,9 @@
   src: url("fonts/Roboto-Meduim.ttf");
   font-weight: normal;
 }
-
+.visibility {
+  visibility: hidden;
+}
 html,
 body {
   width: 100%;
