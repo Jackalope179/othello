@@ -63,7 +63,7 @@
         <!-- Button trigger modal -->
 
         <!-- Player Modal -->
-        <div
+        <!-- <div
           class="modal fade"
           id="playerMode"
           tabindex="-1"
@@ -148,6 +148,72 @@
                 </div>
               </div>
             </div>
+          </div> -->
+
+          <div
+          class="modal fade"
+          id="playerMode"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="playerMode"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-change" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style ="margin-left: 70px">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                  Choose AIs to fight
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+  
+  
+              
+              <div class="modal-body">
+                <div class="container">
+                  
+                  <div class="row align-items-center">
+                    <div class="row">
+  
+                      <div class="col-mt-3">
+                      <input id = "cornerPlayer" class="btn btn-primary" style = "margin-right: 2px; margin-left: 3px;" type="button" value= "Corner" >
+                        
+                      </div>
+  
+                      <div class="col-mt-3">
+                      <input id = "stabilityPlayer" class="btn btn-primary" style = "margin-left:6px" type="button" value="Stability">
+                        
+                      </div>
+  
+                      <div class="col-mt-3">
+                      <input id = "mobilityPlayer" class="btn btn-primary" type="button" style ="margin-left: 6px;" value="Mobility">
+                        
+                      </div>
+  
+                      <div class="col-mt-3">
+                      <input id = "coinPlayer" class="btn btn-primary" style = "margin-left: 7px;" type="button" value="Coin">
+                        
+                      </div>
+                    </div>
+                  <div class="row align-items-center">
+                    <div class="col-mt-12">
+                      <button id="new-game-Player" type="btn btn-primary" class="btn btn-primary" style ="margin-left: 120px; margin-top: 20px;">Play game</button>
+  
+                    </div>
+  
+                  </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         <!-- Player Modal -->
 
@@ -185,28 +251,28 @@
                   <div class="row">
 
                     <div class="col-mt-3">
-                    <input id = "corner" class="btn btn-primary" style = "margin-right: 2px;" type="button" value= "Corner" >
+                    <input id = "corner" class="btn btn-primary" style = "margin-right: 2px; margin-left: 3px;" type="button" value= "Corner" >
                       
                     </div>
 
                     <div class="col-mt-3">
-                    <input id = "stability" class="btn btn-primary" style = "margin-left:2px" type="button" value="Stability">
+                    <input id = "stability" class="btn btn-primary" style = "margin-left:6px" type="button" value="Stability">
                       
                     </div>
 
                     <div class="col-mt-3">
-                    <input id = "mobility" class="btn btn-primary" type="button" style ="margin-left: 2px;" value="Mobility">
+                    <input id = "mobility" class="btn btn-primary" type="button" style ="margin-left: 6px;" value="Mobility">
                       
                     </div>
 
                     <div class="col-mt-3">
-                    <input id = "coin" class="btn btn-primary" style = "margin-left: 5px;" type="button" value="Coin">
+                    <input id = "coin" class="btn btn-primary" style = "margin-left: 7px;" type="button" value="Coin">
                       
                     </div>
                   </div>
                 <div class="row align-items-center">
                   <div class="col-mt-12">
-                    <button id="new-game-AI" type="btn btn-primary" class="btn btn-primary" style ="margin-left: 100px; margin-top: 20px;">Play game</button>
+                    <button id="new-game-AI" type="btn btn-primary" class="btn btn-primary" style ="margin-left: 120px; margin-top: 20px;">Play game</button>
 
                   </div>
 
@@ -242,13 +308,13 @@
       <div id="status" class="flex flex-col justify-center item-center">
              <p class="status-heading text-xl font-bold uppercase mb-4 p-2">Game Status</p>
       	<div>
-                 <span class="black">Mode (black)</span> - {{black_count}}<br>
+                 <span class="black">Black count</span> - {{black_count}}<br>
              </div>
       	<div>
-                 <span class="white">Mode (white)</span> - {{white_count}}<br>
+                 <span class="white">White count</span> - {{white_count}}<br>
              </div>
              <hr class="my-2">
-      	Difficulty - Easy<br>
+      	Statistic Board<br>
       	<strong>Current player - {{player}}</strong>
       </div>
       <div id="game">{{game}}</div>

@@ -315,7 +315,8 @@ class Reversi:
     def __init__(self, single_player=False):
         self.black_player = Player(self.BLACK)
         self.white_player = Player(self.WHITE)
-
+        # self.mode1 = 0
+        # self.mode2 = 1
         # creating the board as 64 tiles
         self.board = OrderedDict((Coord(i, j), self.EMPTY) for i in range(8) for j in range(8))
         
@@ -388,6 +389,8 @@ class Reversi:
         return coord in self.available_fields()
 
     def play(self, coord):
+        # self.mode1=mode1
+        # self.mode2= mode2
         if self.game_state != self.GAME_STATES['IN_PROGRESS']:
             raise GameHasEndedError('Game has already ended')
         if not self.is_valid_move(coord):
@@ -442,6 +445,8 @@ class Reversi:
         }
         return {
             "board": self.print_board(),
+            # "mode1": self.mode1,
+            # "mode2": self.mode2,
             "player": player_map[self.player.field],
             "state": self.game_state,
             "white_count": self.white_player.result,

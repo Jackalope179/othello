@@ -83,7 +83,7 @@ def play():
     idx = int(data.get('idx'))
 
     if(game['mode'] == "AI"):
-        print(game["difficulty"])
+        print("difficulty AI", game["difficulty"])
         while (game['game'].game_info()['player'] == 'black'):
             board = FormatConverter.game_to_ai_board(game['game'].board)
             black_player = ReversiAI('b', 'w')
@@ -93,7 +93,6 @@ def play():
                 game['game'].play(move)
             else:
                 game['game'].change_current_player()
-            # game['game'].play(black_player.get_next_move(board, 'b', game["difficulty"][0])) 
             while game['game'].game_info()['player'] == 'white':
                 board = FormatConverter.game_to_ai_board(game['game'].board)
                 sleep(1)
@@ -103,15 +102,18 @@ def play():
                     game['game'].play(move)
                 else:
                     game['game'].change_current_player()
-                # game['game'].play(white_player.get_next_move(board, 'w', game["difficulty"][1])) 
     else:
-        if data.get(player + '_token') == game[player + '_token']:
-            game['game'].play(Coord(idx // 8, idx % 8))
-            if game['ai']:
-                while game['game'].game_info()['player'] == 'white':
-                    white_player = ReversiAI('w','b')
-                    board = FormatConverter.game_to_ai_board(game['game'].board)
-                    game['game'].play(ReversiAI.get_next_move(board, 'w', game["difficulty"]))
+        print("difficulty Player", game["difficulty"])
+        game['game'].play(Coord(idx // 8, idx % 8))
+        while game['game'].game_info()['player'] == 'white':
+            white_player = ReversiAI('w','b')
+            board = FormatConverter.game_to_ai_board(game['game'].board)
+            move = white_player.get_next_move(board, 'w', game["difficulty"])
+            sleep(1)
+            if move:
+                game['game'].play(move)
+            else:
+                game['game'].change_current_player()
     return dumps(public_game_info(game, True))
 
 

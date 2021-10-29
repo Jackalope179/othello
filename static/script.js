@@ -2,6 +2,8 @@ EASY = 0;
 MEDIUM = 1;
 HARD = 2;
 
+PLAYERFLAG = 0;
+
 CORNER = 1;
 STABILITY = 2;
 MOBILITY = 3;
@@ -69,28 +71,74 @@ var log = function (x) {
 
 $(document)
   // spectate button to watch games in all games list
+
+  // Player Handler
+  .on("click", "#cornerPlayer", function (e) {
+    e.preventDefault();
+    document.getElementById("cornerPlayer").style.backgroundColor = "#bc4b4b";
+    PLAYERFLAG = 1;
+  })
+  .on("click", "#stabilityPlayer", function (e) {
+    e.preventDefault();
+    document.getElementById("stabilityPlayer").style.backgroundColor =
+      "#bc4b4b";
+    PLAYERFLAG = 2;
+  })
+  .on("click", "#mobilityPlayer", function (e) {
+    e.preventDefault();
+    document.getElementById("mobilityPlayer").style.backgroundColor = "#bc4b4b";
+    PLAYERFLAG = 3;
+  })
+  .on("click", "#coinPlayer", function (e) {
+    e.preventDefault();
+    document.getElementById("coinPlayer").style.backgroundColor = "#bc4b4b";
+    PLAYERFLAG = 4;
+  })
+  .on("click", "#new-game-Player", function (e) {
+    $.post(
+      "/create",
+      {
+        name: "Hoang",
+        ai: "true",
+        difficulty: PLAYERFLAG,
+        mode: "Player",
+      },
+      enterGame
+    );
+  })
+
   .on("click", "button.watch", function (e) {
     location.hash = "/game/" + $(e.target).parent().data("id");
   })
 
+  // AI Handler
   .on("click", "#corner", function (e) {
     e.preventDefault();
+    document.getElementById("corner").style.backgroundColor = "#bc4b4b";
+    // document.getElementById("stability").style.backgroundColor = "#0179ff";
+    // document.getElementById("mobility").style.backgroundColor = "#0179ff";
+    // document.getElementById("coin").style.backgroundColor = "#0179ff";
     AIMODE.push(CORNER);
   })
   .on("click", "#stability", function (e) {
     e.preventDefault();
+    document.getElementById("stability").style.backgroundColor = "#bc4b4b";
+    // document.getElementById("corner").style.backgroundColor = "#0179ff";
+    // document.getElementById("mobility").style.backgroundColor = "#0179ff";
+    // document.getElementById("coin").style.backgroundColor = "#0179ff";
     AIMODE.push(STABILITY);
   })
   .on("click", "#mobility", function (e) {
     e.preventDefault();
+    document.getElementById("mobility").style.backgroundColor = "#bc4b4b";
     AIMODE.push(MOBILITY);
   })
   .on("click", "#coin", function (e) {
     e.preventDefault();
-    // let corner = document.getElementById("corner").value;
+    document.getElementById("coin").style.backgroundColor = "#bc4b4b";
     AIMODE.push(COIN_PARITY);
   })
-  //  send post message for creating a new game
+
   .on("click", "#new-game-AI", function (e) {
     $.post(
       "/create",
@@ -104,32 +152,32 @@ $(document)
     );
   })
 
-  .on("click", "#new-game-easy", function (e) {
-    e.preventDefault();
-    $.post(
-      "/create",
-      { name: "Hoang", ai: "true", difficulty: EASY, mode: "Player" },
-      enterGame
-    );
-  })
+  // .on("click", "#new-game-easy", function (e) {
+  //   e.preventDefault();
+  //   $.post(
+  //     "/create",
+  //     { name: "Hoang", ai: "true", difficulty: EASY, mode: "Player" },
+  //     enterGame
+  //   );
+  // })
 
-  .on("click", "#new-game-medium", function (e) {
-    e.preventDefault();
-    $.post(
-      "/create",
-      { name: "Hoang", ai: "true", difficulty: MEDIUM, mode: "Player" },
-      enterGame
-    );
-  })
+  // .on("click", "#new-game-medium", function (e) {
+  //   e.preventDefault();
+  //   $.post(
+  //     "/create",
+  //     { name: "Hoang", ai: "true", difficulty: MEDIUM, mode: "Player" },
+  //     enterGame
+  //   );
+  // })
 
-  .on("click", "#new-game-hard", function (e) {
-    e.preventDefault();
-    $.post(
-      "/create",
-      { name: "Hoang", ai: "true", difficulty: HARD, mode: "Player" },
-      enterGame
-    );
-  })
+  // .on("click", "#new-game-hard", function (e) {
+  //   e.preventDefault();
+  //   $.post(
+  //     "/create",
+  //     { name: "Hoang", ai: "true", difficulty: HARD, mode: "Player" },
+  //     enterGame
+  //   );
+  // })
 
   .on("click", "button.join", function () {
     var data = {
