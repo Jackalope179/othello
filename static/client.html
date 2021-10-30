@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Reversi</title>
+    <title>OTHELLO</title>
     <script defer src="/static/faw/js/all.js"></script>
-
+    <link rel="icon" href="https://lh5.ggpht.com/RaNm7HMSd4oDNblBsmSBbLPJefAqNULGlCMILLGt6opexua7SeyDcEt6S6GvORaHi_ju" type="image/icon type">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-1.12.4.min.js"
@@ -310,15 +310,16 @@
       <div id="status" class="flex flex-col justify-center item-center">
              <p class="status-heading text-xl font-bold uppercase mb-4 p-2">Game Status</p>
       	<div>
-                 <span class="black">Black count</span> - {{black_count}}<br>
+                 <span class="black">{{mode1}}</span> - {{black_count}}<br>
              </div>
       	<div>
-                 <span class="white">White count</span> - {{white_count}}<br>
+                 <span class="white">{{mode2}}</span> - {{white_count}}<br>
              </div>
              <hr class="my-2">
       	Statistic Board<br>
       	<strong>Current player - {{player}}</strong>
       </div>
+      <!-- <button id="quitGame" class = "btn btn-success" style = "margin-left: 40%"> QuitGame </button> -->
       <div id="game">{{game}}</div>
     </script>
 

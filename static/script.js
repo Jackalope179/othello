@@ -2,6 +2,8 @@ EASY = 0;
 MEDIUM = 1;
 HARD = 2;
 
+modeChoosen = 0;
+
 PLAYERFLAG = 0;
 
 CORNER = 1;
@@ -70,72 +72,58 @@ var log = function (x) {
   };
 
 $(document)
-  // spectate button to watch games in all games list
-
-  // Player Handler
-  .on("click", "#cornerPlayer", function (e) {
-    e.preventDefault();
-    document.getElementById("cornerPlayer").style.backgroundColor = "#bc4b4b";
-    PLAYERFLAG = 1;
-  })
-  .on("click", "#stabilityPlayer", function (e) {
-    e.preventDefault();
-    document.getElementById("stabilityPlayer").style.backgroundColor =
-      "#bc4b4b";
-    PLAYERFLAG = 2;
-  })
-  .on("click", "#mobilityPlayer", function (e) {
-    e.preventDefault();
-    document.getElementById("mobilityPlayer").style.backgroundColor = "#bc4b4b";
-    PLAYERFLAG = 3;
-  })
-  .on("click", "#coinPlayer", function (e) {
-    e.preventDefault();
-    document.getElementById("coinPlayer").style.backgroundColor = "#bc4b4b";
-    PLAYERFLAG = 4;
-  })
-  .on("click", "#new-game-Player", function (e) {
-    $.post(
-      "/create",
-      {
-        name: "Hoang",
-        ai: "true",
-        difficulty: PLAYERFLAG,
-        mode: "Player",
-      },
-      enterGame
-    );
-  })
-
-  .on("click", "button.watch", function (e) {
-    location.hash = "/game/" + $(e.target).parent().data("id");
-  })
-
+  // .on("click", "#quitGame", function (e) {
+  //   e.preventDefault();
+  //   console.log("Hello");
+  // })
   // AI Handler
   .on("click", "#corner", function (e) {
     e.preventDefault();
-    document.getElementById("corner").style.backgroundColor = "#bc4b4b";
-    // document.getElementById("stability").style.backgroundColor = "#0179ff";
-    // document.getElementById("mobility").style.backgroundColor = "#0179ff";
-    // document.getElementById("coin").style.backgroundColor = "#0179ff";
+    if (modeChoosen == 0) {
+      document.getElementById("corner").style.backgroundColor = "#000000";
+      modeChoosen += 1;
+    } else if (modeChoosen == 1) {
+      document.getElementById("corner").style.backgroundColor = "#FFFFFF";
+      document.getElementById("corner").style.color = "#000000";
+      modeChoosen += 1;
+    } else return;
     AIMODE.push(CORNER);
   })
   .on("click", "#stability", function (e) {
     e.preventDefault();
-    document.getElementById("stability").style.backgroundColor = "#bc4b4b";
-    // document.getElementById("corner").style.backgroundColor = "#0179ff";
-    // document.getElementById("mobility").style.backgroundColor = "#0179ff";
-    // document.getElementById("coin").style.backgroundColor = "#0179ff";
+    if (modeChoosen == 0) {
+      document.getElementById("stability").style.backgroundColor = "#000000";
+      modeChoosen += 1;
+    } else if (modeChoosen == 1) {
+      document.getElementById("stability").style.backgroundColor = "#FFFFFF";
+      document.getElementById("stability").style.color = "#000000";
+      modeChoosen += 1;
+    } else return;
+
     AIMODE.push(STABILITY);
   })
   .on("click", "#mobility", function (e) {
     e.preventDefault();
-    document.getElementById("mobility").style.backgroundColor = "#bc4b4b";
+    if (modeChoosen == 0) {
+      document.getElementById("mobility").style.backgroundColor = "#000000";
+      modeChoosen += 1;
+    } else if (modeChoosen == 1) {
+      document.getElementById("mobility").style.backgroundColor = "#FFFFFF";
+      document.getElementById("mobility").style.color = "#000000";
+      modeChoosen += 1;
+    } else return;
     AIMODE.push(MOBILITY);
   })
   .on("click", "#coin", function (e) {
     e.preventDefault();
-    document.getElementById("coin").style.backgroundColor = "#bc4b4b";
+    if (modeChoosen == 0) {
+      document.getElementById("coin").style.backgroundColor = "#000000";
+      modeChoosen += 1;
+    } else if (modeChoosen == 1) {
+      document.getElementById("coin").style.backgroundColor = "#FFFFFF";
+      document.getElementById("coin").style.color = "#000000";
+      modeChoosen += 1;
+    } else return;
     AIMODE.push(COIN_PARITY);
   })
 
@@ -145,7 +133,7 @@ $(document)
       {
         name: "Hoang",
         ai: "true",
-        difficulty: `${AIMODE[0]}_${AIMODE[1]}`, //{ firstmode: AIMODE[0], secondmode: AIMODE[1] }
+        difficulty: `${AIMODE[0]}_${AIMODE[1]}`,
         mode: "AI",
       },
       enterGame

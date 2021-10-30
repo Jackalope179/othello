@@ -31,7 +31,8 @@ def new_game(name, has_ai, difficulty, mode):
     global games
     index = new_token()
     game = {"id": index, "black": name,
-            "black_token": new_token(), "ai": has_ai, "game": Reversi(), "difficulty": difficulty, "mode": mode}
+            "black_token": new_token(), "ai": has_ai, "game": Reversi(difficulty_=difficulty, mode_= mode), "difficulty": difficulty, "mode": mode}
+    
     if has_ai:
         game['white'] = 'AI'
     games[index] = game
@@ -71,7 +72,6 @@ def create():
     has_ai = {"false": 0, "true": 1}[request.form.get('ai')]
     difficulty_  = request.form.get('difficulty')
     difficulty = difficulty_.split('_')
-    # print("Difficulty", difficulty, "name", name )
     return dumps(new_game(name, has_ai, difficulty, mode))
 
 
@@ -88,14 +88,14 @@ def play():
             board = FormatConverter.game_to_ai_board(game['game'].board)
             black_player = ReversiAI('b', 'w', game['mode'])
             move = black_player.get_next_move(board, 'b', int(game["difficulty"][0]))
-            sleep(1)
+            # sleep(1)
             if move:
                 game['game'].play(move)
             else:
                 game['game'].change_current_player()
             while game['game'].game_info()['player'] == 'white':
                 board = FormatConverter.game_to_ai_board(game['game'].board)
-                sleep(1)
+                # sleep(1)
                 white_player = ReversiAI('w','b', game['mode'])
                 move = white_player.get_next_move(board, 'w', int(game["difficulty"][1]))
                 if move:

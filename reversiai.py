@@ -267,6 +267,7 @@ class ReversiAI():
         # adding different weights to different evaluations
 
         # return stability
+        # print(self.mode)
         if self.mode =="AI":
             if difficulty == 4:
                 return coin
@@ -276,9 +277,8 @@ class ReversiAI():
                 return stability
             elif difficulty == 1:
                 return corner
-            else: #TOTAL
-                return (7 * coin) + (33 * corner) + (34 * mobility) + 13 * stability
         else:
+            # print("dif", difficulty)
             if difficulty == 0:
                 return coin
             elif difficulty == 1:
