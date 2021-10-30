@@ -152,32 +152,32 @@ $(document)
     );
   })
 
-  // .on("click", "#new-game-easy", function (e) {
-  //   e.preventDefault();
-  //   $.post(
-  //     "/create",
-  //     { name: "Hoang", ai: "true", difficulty: EASY, mode: "Player" },
-  //     enterGame
-  //   );
-  // })
+  .on("click", "#new-game-easy", function (e) {
+    e.preventDefault();
+    $.post(
+      "/create",
+      { name: "Hoang", ai: "true", difficulty: EASY, mode: "Player" },
+      enterGame
+    );
+  })
 
-  // .on("click", "#new-game-medium", function (e) {
-  //   e.preventDefault();
-  //   $.post(
-  //     "/create",
-  //     { name: "Hoang", ai: "true", difficulty: MEDIUM, mode: "Player" },
-  //     enterGame
-  //   );
-  // })
+  .on("click", "#new-game-medium", function (e) {
+    e.preventDefault();
+    $.post(
+      "/create",
+      { name: "Hoang", ai: "true", difficulty: MEDIUM, mode: "Player" },
+      enterGame
+    );
+  })
 
-  // .on("click", "#new-game-hard", function (e) {
-  //   e.preventDefault();
-  //   $.post(
-  //     "/create",
-  //     { name: "Hoang", ai: "true", difficulty: HARD, mode: "Player" },
-  //     enterGame
-  //   );
-  // })
+  .on("click", "#new-game-hard", function (e) {
+    e.preventDefault();
+    $.post(
+      "/create",
+      { name: "Hoang", ai: "true", difficulty: HARD, mode: "Player" },
+      enterGame
+    );
+  })
 
   .on("click", "button.join", function () {
     var data = {

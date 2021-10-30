@@ -86,7 +86,7 @@ def play():
         print("difficulty AI", game["difficulty"])
         while (game['game'].game_info()['player'] == 'black'):
             board = FormatConverter.game_to_ai_board(game['game'].board)
-            black_player = ReversiAI('b', 'w')
+            black_player = ReversiAI('b', 'w', game['mode'])
             move = black_player.get_next_move(board, 'b', int(game["difficulty"][0]))
             sleep(1)
             if move:
@@ -96,7 +96,7 @@ def play():
             while game['game'].game_info()['player'] == 'white':
                 board = FormatConverter.game_to_ai_board(game['game'].board)
                 sleep(1)
-                white_player = ReversiAI('w','b')
+                white_player = ReversiAI('w','b', game['mode'])
                 move = white_player.get_next_move(board, 'w', int(game["difficulty"][1]))
                 if move:
                     game['game'].play(move)
@@ -106,9 +106,9 @@ def play():
         print("difficulty Player", game["difficulty"])
         game['game'].play(Coord(idx // 8, idx % 8))
         while game['game'].game_info()['player'] == 'white':
-            white_player = ReversiAI('w','b')
+            white_player = ReversiAI('w','b', game['mode'])
             board = FormatConverter.game_to_ai_board(game['game'].board)
-            move = white_player.get_next_move(board, 'w', game["difficulty"])
+            move = white_player.get_next_move(board, 'w', int(game["difficulty"][0]))
             sleep(1)
             if move:
                 game['game'].play(move)
